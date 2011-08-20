@@ -1,14 +1,3 @@
-function mkv_list () {
-	printf "	amkv
-	gmkv
-	jmkv
-	kmkv
-	rfmkv
-	simkv
-	snmkv
-	tmkv  -- 
-	tomkv --\n"
-}
 alias mm="mkvmerge"
 
 function amkv () {
@@ -30,9 +19,7 @@ function amkv () {
 		open rfin/
 	else
 		echo -e "Extract the aac audio from a mkv file
-		Needs mp4box Pre-Compiled version at 
-		http://www.exomanic.com/joomla/index.php?option=
-		com_weblinks&task=view&catid=15&id=20
+		Needs mp4box
 		The directory ~/Desktop/joinMkv/ will created if it is not there
 		The file will be in mkv format and in ~/Desktop/joinMkv/rfin/
 		1 The location of the mkv file
@@ -193,62 +180,10 @@ function tmkv () {
 	The directory ~/Desktop/joinMkv/ will created if it is not there
 	The file will be in mkv format and in ~/Desktop/joinMkv/rfin/
 	Only the first three arguments are needed to work but the 
-	third can be omitted meaning it be split once, if there 
-	is no name provided it will he named s-002.mkv.
+	third can be omitted meaning it be start time will be 00:00:00, 
+	if there  is no name provided it will he named s-002.mkv.
 	Spaces in one's path can cause errors.
 	"
 	fi
 	cd $OLDPWD;
 }
-
-function tomkv () {
-	if [[ -n "${1}" && -n "${2}" && -f "${1}" ]]
-	then
-		if [ -d ~/Desktop/joinMkv/ ]
-		then 
-			echo ""
-		else
-			mkdir -p ~/Desktop/joinMkv/
-			mkdir -p ~/Desktop/joinMkv/fin/
-			mkdir -p ~/Desktop/joinMkv/rfin/
-		fi
-		cd ~/Desktop/joinMkv
-		mkvmerge -o f.mkv "${1}" --split ${2} --split-max-files 2
-		mv f-001.mkv fin/f.mkv
-		for i in *.mkv
-			do
-			rm "${i}"
-		done
-		if [[ -n "${3}" && -f fin/f.mkv ]]
-		then
-			mkvmerge -o s.mkv fin/f.mkv --split ${3} --split-max-files 2
-			rm s-001.mkv
-			rm fin/f.mkv
-			if [ -n "${4}" ]
-			then
-				mv s-002.mkv "rfin/${4}.mkv"
-			else
-				mv s-002.mkv "rfin/s-002.mkv"
-			fi
-		else
-			mv fin/f.mkv "rfin/s-002.mkv"
-		fi
-
-	else
-		echo -e "Extract the section of video between two time
-		Time are in the form hh:mm:ss
-		1 The location of the file
-		2 The End time of the section
-		3 The Start time of the section
-		4 The name the fine
-	The directory ~/Desktop/joinMkv/ will created if it is not there
-	The file will be in mkv format and in ~/Desktop/joinMkv/rfin/
-	Only the first three arguments are needed to work but the 
-	third can be omitted meaning it be split once, if there 
-	is no name provided it will he named s-002.mkv.
-	Spaces in one's path can cause errors.
-	"
-	fi
-	cd $OLDPWD;
-}
-

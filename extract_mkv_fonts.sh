@@ -1,5 +1,5 @@
 #!/bin/bash
-# extracts all fonts from the specifed mkvs
+#extracts all fonts from the specified mkvs
 IFS=$'\x0a';
 for i in $*; do
 	echo $i
