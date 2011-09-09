@@ -1,6 +1,6 @@
 MKV Utilities {#readmeTitle}
 =============
-
+Scripts to easily join, split and extracts mkv files. Also has scripts to do **lossless** convertion of mkv to mp4 (with subtitles) and mp4 to mkv. The scripts can also extract all fonts and subtitles from a set of mkvs. Also contains a Java app for creating mkv chapters. 
 {#description}
 
 Usage
