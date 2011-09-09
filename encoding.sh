@@ -35,7 +35,9 @@ function mkvaudio () {
 function mkvsub () {
 	Subs=`mediainfo "$1" | grep -A 1 Text | grep ID | head -n 1 | grep -oP "\d+"`
 	Name=${2:-${1%.*}}
-	mkvextract tracks "$1" ${Subs}:${Name}.ssa
+	# echo $Subs $Name
+	# echo "mkvextract tracks '$1' ${Subs}:${Name}.ssa"
+	mkvextract tracks "$1" "${Subs}:${Name}.ssa"
 }
 
 function aac () {
